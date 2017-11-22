@@ -1,0 +1,11 @@
+INTRODUZIONE
+	Breve riassunto del paper
+	Perché può essere utile un approccio euristico
+	"In questa relazione presentiamo..."
+EURISTICHE
+	Spiegazione delle varie euristiche (descrizione, potenzialità)
+RISULTATI
+	Analisi dei grafici
+	Tabellone riassuntivo
+CONCLUSIONI
+	Perché quelle euristiche funzionano bene/male?
