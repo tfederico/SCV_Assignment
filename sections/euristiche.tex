@@ -1,3 +1,56 @@
 \section{Euristiche}
-
 %Spiegazione delle varie euristiche (descrizione, potenzialità)
+
+In questa sezione, descriviamo le varie euristiche utilizzate e quali rieniamo siano i relativi vantaggi/svantaggi.
+
+\subsection{Nodo con peso massimo}\label{subsec:nodo_peso_massimo}
+
+Ogni nodo - thorn, ausiliario o senza classe - ha associato un peso che indica la sua rilevanza all'interno del problema. Questo peso influisce sul valore finale della funzione obiettivo. L'intuizione dietro a questa euristica è che i nodi più influenti nel problema siano quelli con il peso più elevato. Di conseguenza, dando maggiore priorità a questi nodi il problema dovrebbe essere risolto nel più breve tempo possibile. Come effetto collaterale, fissare i nodi con il peso più elevato significa incrementare il valore finale della funzione obiettivo che, trattandosi di un problema di minimizzazione, è chiaramente uno svantaggio.
+
+\subsection{Nodo con peso minimo}\label{subsec:nodo_peso_minimo}
+
+Il ragionamento dietro questa euristica è l'opposto a quello descritto nella Sezione~\ref{subsec:nodo_peso_massimo}: fissando i nodi con il peso minore l'obiettivo è quello di minimizzare il valore finale della funzione obiettivo. Ovviamente, se l'intuizione che i nodi con peso elevato aiutano a risolvere più rapidamente il problema si rivelasse corretta, questa euristica richiede un elevato numero di iterazioni per risolvere il problema.
+
+\subsection{Nodi ausiliari}\label{subsec:nodi_ausiliari}
+
+I nodi ausiliari sono caratterizzati da \todo{???}.
+
+\subsection{Nodi ausiliari - peso massimo}
+
+Combinazione delle euristiche descritte nelle Sezion~\ref{subsec:nodi_ausiliari} e \ref{subsec:nodo_peso_massimo}. In questo modo, l'euristica seleziona tra i nodi ritenuti più importanti - gli ausiliari - quelli con maggiore rilevanza, ossia con peso massimo.
+
+\subsection{Nodi ausiliari - peso minimo}
+
+Combinazione delle euristiche descritte nelle Sezion~\ref{subsec:nodi_ausiliari} e \ref{subsec:nodo_peso_minimo}. Così facendo, si tenta di selezionare i nodi ritenuti più rilevanti mantenendo un valore basso per la funzione obiettivo.
+
+\subsection{Nodi thorn}\label{subsec:nodi_thorn}
+
+I nodi thorn sono caratterizzati da \todo{???}.
+
+\subsection{Nodi thorn - peso massimo}
+
+Combinazione delle euristiche descritte nelle Sezioni~\ref{subsec:nodi_thorn} e \ref{subsec:nodo_peso_massimo}.
+
+\subsection{Nodi thorn - peso minimo}
+
+Combinazione delle euristiche descritte nelle Sezioni~\ref{subsec:nodi_thorn} e \ref{subsec:nodo_peso_minimo}.
+
+\subsection{Nodi senza classe}\label{subsec:nodi_senza_classe}
+
+Oltre ai nodi thorn e ai nodi ausiliari, i problemi di soddisfacimento dei vincoli definiti in questo modo prevedono anche dei nodi senza classe, ossia che non appartengono a nessuna delle due classi precedenti. Questa euristica vuole investigare quale sia la rilevanza di questi nodi all'interno del problema.
+
+\subsection{Nodi senza classe - peso massimo}
+
+Combinazione delle euristiche descritte nelle Sezion~\ref{subsec:nodi_senza_classe} e \ref{subsec:nodo_peso_massimo}.
+
+\subsection{Nodi senza classe - peso minimo}
+
+Combinazione delle euristiche descritte nelle Sezion~\ref{subsec:nodi_senza_classe} e \ref{subsec:nodo_peso_minimo}.
+
+\subsection{Nodo con massimo numero di archi}\label{subsec:nodo_massimo_numero_archi}
+
+In questo tipo di problemi, le variabili sono espresse come nodi e i vincoli binari come archi che collegano i nodi. Il ragionamento più logico che ne segue è fissare i nodi con il massimo numero di archi, che conseguentemente vanno a fissare altri $N$ nodi (i.e. variabili), dove $N$ è il numero di archi collegati al nodo (i.e. vincoli in cui la variabile rappresentata dal nodo è presente).
+
+\subsection{Nodo con minimo numero di archi}
+
+Questa euristica usa il principio contrario a quello applicato nella Sezione~\ref{subsec:nodo_massimo_numero_archi}. La motivazione è che questa euristica prende in considerazione il fatto che i nodi più rilevanti per la risoluzione o ottimizzazione del problema, o quelli che possano rallentare il risolvimento, siano tra i più isolati, ossia con il minor numero di archi collegati.
