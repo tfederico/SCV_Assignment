@@ -11,16 +11,13 @@ Per valutare le euristiche, sono state utilizzate diverse metriche:
 \item \textbf{Media max nodi fissati}: per ogni problema, viene calcolato il numero di nodi fissati ad ogni iterazione. Viene preso il numero di nodi fissati dell'iterazione che ne ha fissati di più per ogni problema, e viene effettuata la media di tale valore su ogni problema;
 \item \textbf{Media nodi no fissati:} la media del numero di iterazioni in cui non vengono fissati nodi, calcolata considerando tutte le iterazioni di tutti i problemi;
 \item \textbf{Max passi}: numero di passi necessari per chiudere il problema che ha richiesto più iterazioni;
-\item \textbf{Max fissati}: numero massimo di nodi fissati in un passo, calcolato considerando ogni iterazione di ogni problema;
-\item \textbf{Max max nodi fissati}:
+\item \textbf{Max max nodi fissati}: numero massimo di nodi fissati in un passo, calcolato considerando ogni iterazione di ogni problema;
 \item \textbf{Min nodi no fissati}: minimo numero di iterazioni in cui non sono stati fissati nodi, calcolato su tutte le iterazioni di tutti i problemi.
 \end{itemize}
 
-La tabella mostra i risultati delle euristiche proposte sulle metriche presentate sopra. I migliori risultati per ogni metrica sono evidenziati in grassetto. 
+La Tabella \ref{tab:results} mostra i risultati delle euristiche proposte sulle metriche presentate sopra. I migliori risultati per ogni metrica sono evidenziati in grassetto. 
 
-Come si può vedere, l'euristica \textit{noAuxnoThornMaxPeso}, insieme all'euristica \textit{maxPeso}, sono quelle che, generalmente, portano ai migliori risultati. Non solo: i risultati di entrambe le euristiche sono gli stessi su ogni metrica. Questo significa che l'euristica \textit{maxPeso}, che favorisce i nodi a cui è assegnato peso maggiore, sembra essere la migliore per i problemi considerati, ma che prendere in considerazione la classe del nodo oltre al suo peso non porta alcuna variazione nei risultati.
-
-\begin{sidewaystable}[]
+\begin{sidewaystable}[htbp]
 \centering
 \begin{tabular}{l|c|c|c|c|c|c|c|c}
 \rowcolor[HTML]{EFEFEF} 
@@ -48,3 +45,87 @@ thornMinPeso        & 728.6                & 8.9800927173                       
 \caption{Risultati delle euristiche sulle diverse metriche.}
 \label{tab:results}
 \end{sidewaystable}
+
+Come si può vedere, l'euristica \textit{noAuxNoThornMaxPeso}, insieme all'euristica \textit{maxPeso}, sono quelle che, generalmente, portano ai migliori risultati. Non solo: i risultati di entrambe le euristiche sono gli stessi su ogni metrica. Questo significa che l'euristica \textit{maxPeso}, che favorisce i nodi a cui è assegnato peso maggiore, sembra essere la migliore per i problemi considerati, ma che prendere in considerazione la classe del nodo oltre al suo peso non porta alcuna variazione nei risultati.
+
+Invece, l'euristica che nel complesso sembra avere il comportamento peggiore è \textit{minArchiDaFissare}, portando ai peggiori risultati su 6 delle 8 metriche testate. Nelle restanti due metriche (\textit{media max nodi fissati} e \textit{max max nodi fissati}), l'euristica \textit{minArchiDaFissare} è comunque fra le peggiori.
+
+La discussione si concentrerà ora nel dettaglio delle varie metriche, analizzandone i risultati delle diverse euristiche.
+
+\subsection{Media passi}
+\label{subsec:mediaPassi}
+I risultati delle varie euristica sulla metrica \textit{media passi} sono mostrate graficamente in Figura \ref{fig:mediaPassi}.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{res/img/mediaPassi.png}
+\caption{Rappresentazione grafica dei risultati della varie euristiche sulla metrica \textit{media passi}.}
+\label{fig:mediaPassi}
+\end{figure}
+
+Per quanto riguarda il numero di passi necessari a chiudere il problema, la maggior parte delle euristiche testate si comporta piuttosto bene, rimandendo al di sotto degli 800 passi. Tuttavia, le tre euristiche \textit{aux}, \textit{auxMinPeso} e \textit{minArchiDaFissare} necessitano di molti più passi (circa 1800 la prima, sopra i 2500 le seconde) per chiudere il problema.
+
+\subsection{Media fissati}
+I risultati delle varie euristica sulla metrica \textit{media fissati} sono mostrate graficamente in Figura \ref{fig:mediaFissati}.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{res/img/nodiFissati.png}
+\caption{Rappresentazione grafica dei risultati della varie euristiche sulla metrica \textit{media fissati}.}
+\label{fig:mediaFissati}
+\end{figure}
+
+La metrica \textit{media fissati} definisce il numero medio di nodi fissati sulle diverse iterazioni nei vari problemi. Come accennato precedentemente, le euristiche \textit{maxPeso} e \textit{noAuxNoThornMaxPeso} fissano mediamente il maggior numero di nodi (in media, 37 ad iterazione). Anche l'euristica \textit{maxArchiDaFissare} si comporta piuttosto bene, fissando mediamente 31 nodi ad iterazione. Invece, le euristiche \textit{aux}, \textit{auxMinPeso} e \textit{minArchiDaFissare} riescono a fissare meno di 5 nodi ad iterazione: conseguentemente, il numero di passi per chiudere il problema aumenta, come visto in Sezione \ref{subsec:mediaPassi}.
+
+\subsection{Media max nodi fissati}
+I risultati delle varie euristica sulla metrica \textit{media max nodi fissati} sono mostrate graficamente in Figura \ref{fig:mediaMaxNodiFissati}.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{res/img/mediaMaxFissati.png}
+\caption{Rappresentazione grafica dei risultati della varie euristiche sulla metrica \textit{media max nodi fissati}.}
+\label{fig:mediaMaxNodiFissati}
+\end{figure}
+
+Questa metrica riconferma la qualità delle euristiche \textit{maxPeso} e \textit{noAuxNoThornMaxPeso} e la inefficacia delle euristiche \textit{aux}, \textit{auxMinPeso} e \textit{minArchiDaFissare}. Possiamo inoltre notare che le euristiche \textit{auxMaxPeso}, \textit{maxArchiDaFissare} e \textit{thornMaxPeso} ottengono buoni risultati.
+
+\subsection{Media nodi non fissati}
+I risultati delle varie euristica sulla metrica \textit{media nodi no fissati} sono mostrate graficamente in Figura \ref{fig:mediaNodiNoFissati}.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{res/img/mediaNodiNoFissati.png}
+\caption{Rappresentazione grafica dei risultati della varie euristiche sulla metrica \textit{media nodi no fissati}.}
+\label{fig:mediaNodiNoFissati}
+\end{figure}
+
+Questa metrica riflette il numero di iterazioni in cui la riduzione non riesce a fissare nessun nodo. Perciò, un buon approccio euristico dovrebbe minimizzare questo numero. In generale, le varie euristiche hanno ottenuto buoni risultati su questa metrico, eccetto per \textit{aux}, \textit{auxMinPeso} e \textit{minArchiDaFissare}.
+
+\subsection{Max passi}
+I risultati delle varie euristica sulla metrica \textit{max passi} sono mostrate graficamente in Figura \ref{fig:maxPassi}.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{res/img/maxPassi.png}
+\caption{Rappresentazione grafica dei risultati della varie euristiche sulla metrica \textit{max passi}.}
+\label{fig:maxPassi}
+\end{figure}
+
+Questa metrica riconferma le considerazione fatte in precedenza senza aggiungere particolari informazioni interessanti. Anche qui, le varie euristiche hanno buoni risultati eccetto \textit{aux}, \textit{auxMinPeso} e \textit{minArchiDaFissare}.
+
+\subsection{Max max nodi fissati}
+I risultati delle varie euristica sulla metrica \textit{max max nodi fissati} sono mostrate graficamente in Figura \ref{fig:maxMaxNodiFissati}.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{res/img/maxMaxNodiFissati.png}
+\caption{Rappresentazione grafica dei risultati della varie euristiche sulla metrica \textit{max max nodi fissati}.}
+\label{fig:maxMaxNodiFissati}
+\end{figure}
+
+Questa metrica mostra risultati interessanti. Infatti, possiamo vedere come in questo caso l'euristica \textit{maxPeso}, con un numero massimo assoluto di nodi fissati di 651, non sia più la migliore, sebbene rimanga comunque fra le migliori euristiche. Invece, l'euristica \textit{thornMaxPeso} risulta essere la migliore, con un numero massimo di nodi fissati di 931. Questo significa che tale euristica, in un determinato problema, ha fissato 931 nodi in una sola iterazione. Potrebbe essere quindi interessante capire se questa euristica possa essere particolarmente performante su una specifica classe di problemi.
+
+\subsection{Min nodi no fissati}
+I risultati delle varie euristica sulla metrica \textit{min nodi no fissati} sono mostrate graficamente in Figura \ref{fig:minNodiNoFissati}.
+
+\begin{figure}[H]
+\includegraphics[width=\textwidth]{res/img/minNodiNoFissati.png}
+\caption{Rappresentazione grafica dei risultati della varie euristiche sulla metrica \textit{min nodi no fissati}.}
+\label{fig:minNodiNoFissati}
+\end{figure}
+
+Anche questa metrica riconferma considerazioni fatte in precedenza: \textit{aux}, \textit{auxMinPeso} e \textit{minArchiDaFissare} danno risultati particolarmente negativi, mentre le altre euristiche hanno risultati generalmente buoni. 
