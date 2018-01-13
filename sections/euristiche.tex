@@ -1,52 +1,52 @@
 \section{Euristiche}\label{sec:euristiche}
 %Spiegazione delle varie euristiche (descrizione, potenzialità)
 
-In questa sezione, descriviamo le varie euristiche utilizzate e quali rieniamo siano i relativi vantaggi/svantaggi.
+In questa sezione, descriviamo le varie euristiche utilizzate e quali riteniamo siano i relativi vantaggi/svantaggi.
 
-\subsection{Nodo con peso massimo}\label{subsec:nodo_peso_massimo}
+\subsection{Nodo con peso massimo (\textit{maxPeso})}\label{subsec:nodo_peso_massimo}
 
-Ogni nodo - thorn, ausiliario o senza classe - ha associato un peso che indica la sua rilevanza all'interno del problema. Questo peso influisce sul valore finale della funzione obiettivo. L'intuizione dietro a questa euristica è che i nodi più influenti nel problema siano quelli con il peso più elevato. Di conseguenza, dando maggiore priorità a questi nodi il problema dovrebbe essere risolto nel più breve tempo possibile. Come effetto collaterale, fissare i nodi con il peso più elevato significa incrementare il valore finale della funzione obiettivo che, trattandosi di un problema di minimizzazione, è chiaramente uno svantaggio.
+Ogni nodo ha associato un peso che indica la sua rilevanza all'interno del problema. Questo peso influisce sul valore finale della funzione obiettivo. L'intuizione dietro a questa euristica è che i nodi più influenti nel problema siano quelli con il peso più elevato. Di conseguenza, dando maggiore priorità a questi nodi il problema dovrebbe essere risolto nel più breve tempo possibile. Come effetto collaterale, fissare i nodi con il peso più elevato significa incrementare il valore finale della funzione obiettivo che, trattandosi di un problema di minimizzazione, è chiaramente uno svantaggio.
 
-\subsection{Nodo con peso minimo}\label{subsec:nodo_peso_minimo}
+\subsection{Nodo con peso minimo (\textit{minPeso})}\label{subsec:nodo_peso_minimo}
 
-Il ragionamento dietro questa euristica è l'opposto a quello descritto nella Sezione~\ref{subsec:nodo_peso_massimo}: fissando i nodi con il peso minore l'obiettivo è quello di minimizzare il valore finale della funzione obiettivo. Ovviamente, se l'intuizione che i nodi con peso elevato aiutano a risolvere più rapidamente il problema si rivelasse corretta, questa euristica richiede un elevato numero di iterazioni per risolvere il problema.
+Il ragionamento dietro questa euristica è l'opposto a quello descritto nella Sezione~\ref{subsec:nodo_peso_massimo}: fissando i nodi con il peso minore l'obiettivo è quello di minimizzare il valore finale della funzione obiettivo. Ovviamente, se l'intuizione che i nodi con peso elevato aiutano a risolvere più rapidamente il problema si rivelasse corretta, questa euristica richiederebbe un elevato numero di iterazioni per risolvere il problema.
 
-\subsection{Nodi ausiliari/thorn}\label{subsec:nodi}
+\subsection{Nodi ausiliari/thorn (\textit{aux}, \textit{thorn})}\label{subsec:nodi}
 
 In questo genere di problemi di soddisfacimento dei vincoli, i nodi possono essere categorizzati in differenti classi: nodi \textit{thorn} oppure nodi \textit{ausiliari}. Un'euristica può prendere in considerazione il fatto che l'appartenenza o meno di un nodo ad una di queste classi possa influenzare il risultato finale.
 
-\subsection{Nodi ausiliari - peso massimo}
+\subsection{Nodi ausiliari - peso massimo (\textit{auxMaxPeso})}
 
-Combinazione delle euristiche descritte nelle Sezion~\ref{subsec:nodi} e \ref{subsec:nodo_peso_massimo}. In questo modo, l'euristica seleziona tra i nodi ritenuti più importanti - gli ausiliari - quelli con maggiore rilevanza, ossia con peso massimo. Nel caso in cui non ci siano più nodi ausiliari da fissare, l'euristica prevede di selezionare il nodo con il peso massimo tra tutti i nodi restanti.
+Combinazione delle euristiche descritte nelle Sezioni \ref{subsec:nodi} e \ref{subsec:nodo_peso_massimo}. In questo modo, l'euristica seleziona tra i nodi ritenuti più importanti - gli ausiliari - quelli con maggiore rilevanza, ossia con peso massimo. Nel caso in cui non ci siano più nodi ausiliari da fissare, l'euristica prevede di selezionare il nodo con il peso massimo tra tutti i nodi restanti.
 
-\subsection{Nodi ausiliari - peso minimo}
+\subsection{Nodi ausiliari - peso minimo (\textit{auxMinPeso})}
 
 Combinazione delle euristiche descritte nelle Sezion~\ref{subsec:nodi} e \ref{subsec:nodo_peso_minimo}. Così facendo, si tenta di selezionare i nodi ritenuti più rilevanti mantenendo un valore basso per la funzione obiettivo. Nel caso in cui non ci siano più nodi ausiliari da fissare, l'euristica prevede di selezionare il nodo con il peso minimo tra tutti i nodi restanti.
 
-\subsection{Nodi thorn - peso massimo}
+\subsection{Nodi thorn - peso massimo (\textit{thornMaxPeso})}
 
 Combinazione delle euristiche descritte nelle Sezioni~\ref{subsec:nodo_peso_massimo} e \ref{subsec:nodi}. Nel caso in cui non ci siano più nodi thorn da fissare, l'euristica prevede di selezionare il nodo con il peso massimo tra tutti i nodi restanti.
 
-\subsection{Nodi thorn - peso minimo}
+\subsection{Nodi thorn - peso minimo (\textit{thornMinPeso})}
 
 Combinazione delle euristiche descritte nelle Sezioni~\ref{subsec:nodo_peso_minimo} e \ref{subsec:nodi}. Nel caso in cui non ci siano più nodi thorn da fissare, l'euristica prevede di selezionare il nodo con il peso minimo tra tutti i nodi restanti.
 
-\subsection{Nodi senza classe}\label{subsec:nodi_senza_classe}
+\subsection{Nodi senza classe (\textit{noAuxNoThorn})}\label{subsec:nodi_senza_classe}
 
 Oltre ai nodi thorn e ai nodi ausiliari, i problemi di soddisfacimento dei vincoli definiti in questo modo prevedono anche dei nodi senza classe, ossia che non appartengono a nessuna delle due classi precedenti. Questa euristica vuole investigare quale sia la rilevanza di questi nodi all'interno del problema.
 
-\subsection{Nodi senza classe - peso massimo}
+\subsection{Nodi senza classe - peso massimo (\textit{noAuxNoThornMaxPeso})}
 
 Combinazione delle euristiche descritte nelle Sezioni~\ref{subsec:nodo_peso_massimo} e \ref{subsec:nodi_senza_classe}. Nel caso in cui non ci siano più nodi senza classe da fissare, l'euristica prevede di selezionare il nodo con il peso massimo tra tutti i nodi restanti.
 
-\subsection{Nodi senza classe - peso minimo}
+\subsection{Nodi senza classe - peso minimo (\textit{noAuxNoThornMinPeso})}
 
 Combinazione delle euristiche descritte nelle Sezioni~\ref{subsec:nodo_peso_minimo} e \ref{subsec:nodi_senza_classe}. Nel caso in cui non ci siano più nodi senza classe da fissare, l'euristica prevede di selezionare il nodo con il peso minimo tra tutti i nodi restanti.
 
-\subsection{Nodo con massimo numero di archi}\label{subsec:nodo_massimo_numero_archi}
+\subsection{Nodo con massimo numero di archi (\textit{maxArchiDaFissare})}\label{subsec:nodo_massimo_numero_archi}
 
 In questo tipo di problemi, le variabili sono espresse come nodi e i vincoli binari come archi che collegano i nodi. Il ragionamento più logico che ne segue è fissare i nodi con il massimo numero di archi, che conseguentemente vanno a fissare altri $N$ nodi (i.e. variabili), dove $N$ è il numero di archi collegati al nodo (i.e. vincoli in cui la variabile rappresentata dal nodo è presente).
 
-\subsection{Nodo con minimo numero di archi}
+\subsection{Nodo con minimo numero di archi (\textit{minArchiDaFissare})}
 
 Questa euristica usa il principio contrario a quello applicato nella Sezione~\ref{subsec:nodo_massimo_numero_archi}. La motivazione è che questa euristica prende in considerazione il fatto che i nodi più rilevanti per la risoluzione o ottimizzazione del problema, o quelli che possano rallentare il risolvimento, siano tra i più isolati, ossia con il minor numero di archi collegati.
