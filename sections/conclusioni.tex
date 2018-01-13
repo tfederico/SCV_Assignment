@@ -1,4 +1,14 @@
 \section{Conclusioni}
 \label{sec:conclusioni}
 
-%Perché quelle euristiche funzionano bene/male?
+%Breve riassunto del lavoro fatto nel paper
+I problemi di inferenza sulle reti bayesiane possono essere risolti tramite riduzione di Nemauser-Trotter. Un esempio di questi problemi sono i Maximum A Posteriori estimate (MAP), dove data l'assegnazione di una variabile, si deve determinate quale siano gli assegnamenti più probabili per quelle restanti. Inoltre, il problema di ottimizzazione può essere convertito in un ``Weighted CSP''. Da qui sappiamo che una rete Bayesiana può essere convertita in un Constraint Composite Graph (CCG), trasformando il problema in un Maximum Weigthed Vertex Cover Problem sul CCG e applicando la riduzione di Nemauser-Trotter.
+
+%Perché utilizziamo l'approccio euristico
+Per semplificare la risoluzione di un problema di ottimizzazione o di soddisfacimento di vincoli, è possibile utilizzare un approccio euristico in cui, date certe informazioni sul problema, si ipotizza quali possano essere i fattori che velocizzano o migliorano le singole iterazioni. Nel nostro caso, sappiamo che le variabili del problema (rappresentate tramite nodi) hanno delle feature associate: classe (thorn, ausiliario o nessuna delle due), un peso e una serie di vincoli su altre variabili (rappresentati tramite archi).
+
+%Riassunto dei risultati
+
+
+%Future directions
+Infine, sapendo che le euristiche proposte hanno come obiettivo principale la risoluzione del problema (i.e., trovare una soluzione qualsiasi) ma non l'ottimizzazione, in futuro riteniamo possa essere interessante comprendere se la combinazione di queste euristiche possa portare non solo ad una rapida chiusura del problema, ma anche ad una sua ottimizzazione.
